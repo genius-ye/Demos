@@ -25,7 +25,7 @@ public class PieChartActivity extends AppCompatActivity {
         for (int i = 0; i < 8; i++) {
             mIPieElements.add(new PieElement(10+(i*3),getRandColorCode(),"测试:"+i));
         }
-        mPieChart.setData(mIPieElements);
+        mPieChart.setData(mIPieElements,false);
         mPieChart.setTitleText("我是title");
         mPieChart.setOnItemClickListener(new PieChart.OnItemClickListener() {
             @Override
@@ -37,7 +37,7 @@ public class PieChartActivity extends AppCompatActivity {
         findViewById(R.id.btn_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                mPieChart.setData(mIPieElements);
+                mPieChart.setData(mIPieElements,true);
             }
         });
     }

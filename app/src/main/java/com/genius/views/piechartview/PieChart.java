@@ -218,7 +218,7 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
 
         //这里开始画中心空白部分以及文字，空白部分半径设置为整个圆半径的0.6倍
         canvas.drawCircle(0, 0, mInnerRadius, mBlankPaint);
-        if(!isAnimation){
+        if (!isAnimation) {
             double index = Math.ceil(mText.length() / 2) + 1;
             if (mText.length() % 2 == 0) {
                 index -= 1;
@@ -238,11 +238,14 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
     private Rect rect = new Rect();
 
 
-    public void setData(List<IPieElement> elements) {
+    public void setData(List<IPieElement> elements, boolean isPlayAnimation) {
         mElements = elements;
         setValuesAndColors();
-        startAnimation();
-//        invalidate();
+        if (isPlayAnimation) {
+            startAnimation();
+        } else {
+            invalidate();
+        }
     }
 
     private void startAnimation() {
