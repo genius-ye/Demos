@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.genius">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name="com.genius.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.genius.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- wechat callback -->
+
+
+        <!-- <activity -->
+        <!-- android:name=".wxapi.WXEntryActivity" -->
+        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
+        <!-- android:exported="true" -->
+        <!-- android:launchMode="singleInstance" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
+
+
+        <!-- dingding -->
+        <activity
+            android:name="com.genius.ddshare.DDShareActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+        <activity android:name="com.genius.views.drawfontview.DrawFrontActivity">
+        </activity>
+        <activity android:name="com.genius.views.horizontalcenterrecyclerview.RecyclerviewActivity">
+        </activity>
+        <activity android:name="com.genius.managers.mediaplaymanager.PlayerActivity">
+        </activity>
+        <activity android:name="com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity">
+        </activity>
+        <activity android:name="com.genius.views.piechartview.PieChartActivity">
+        </activity>
+    </application>
+
+</manifest>

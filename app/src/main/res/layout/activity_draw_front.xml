@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.genius.views.drawfontview.DrawFrontActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_init"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置数据"/>
+
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重画"/>
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自动播放"/>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <!--<com.genius.views.drawfontview.DrawFontView-->
+            <!--android:id="@+id/drawfont"-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="200dp"/>-->
+
+        <com.genius.views.drawfontview.DrawPinyinView
+            android:id="@+id/drawfont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="110dp">-->
+
+        <!--<View-->
+            <!--android:id="@+id/v_character_pinyin_line_top"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:background="@drawable/bg_pinyin_line_top_bottom" />-->
+
+        <!--<View-->
+            <!--android:id="@+id/v_character_pinyin_line_middle1"-->
+            <!--android:layout_below="@id/v_character_pinyin_line_top"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1.5dp"-->
+            <!--android:layout_marginTop="33dp"-->
+            <!--android:layerType="software"-->
+            <!--android:background="@drawable/bg_pinyin_line_middle"/>-->
+        <!--<View-->
+            <!--android:id="@+id/v_character_pinyin_line_middle2"-->
+            <!--android:layout_below="@id/v_character_pinyin_line_middle1"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1.5dp"-->
+            <!--android:layerType="software"-->
+            <!--android:layout_marginTop="35dp"-->
+            <!--android:background="@drawable/bg_pinyin_line_middle" />-->
+        <!--<View-->
+            <!--android:id="@+id/v_character_pinyin_line_bottom"-->
+            <!--android:layout_below="@+id/v_character_pinyin_line_middle2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_marginTop="35dp"-->
+            <!--android:background="@drawable/bg_pinyin_line_top_bottom"/>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:gravity="center"-->
+            <!--&gt;-->
+
+            <!--<com.genius.views.drawfontview.DrawPinyinView-->
+                <!--android:id="@+id/drawfont"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--/>-->
+        <!--</RelativeLayout>-->
+    <!--</RelativeLayout>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试专用"/>
+</LinearLayout>
