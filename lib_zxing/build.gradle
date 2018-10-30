@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+
+    }
+
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        //ZXing
+        compile 'com.google.zxing:core:3.3.0'
+    }
+}
+dependencies {
+    // https://mvnrepository.com/artifact/com.android.support/appcompat-v7
+    implementation project(':lib_permissionutil')
+}
