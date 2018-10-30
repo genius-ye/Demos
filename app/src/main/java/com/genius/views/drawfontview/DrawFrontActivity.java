@@ -1,8 +1,8 @@
 package com.genius.views.drawfontview;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import com.genius.demo.R;
+import com.genius.R;
+
 
 public class DrawFrontActivity extends AppCompatActivity {
 //    private DrawFontView mDrawFont;
