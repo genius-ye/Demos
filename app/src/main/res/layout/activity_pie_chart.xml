@@ -6,10 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9dd3fa"
+    android:orientation="vertical"
     tools:context="com.genius.views.piechartview.PieChartActivity">
 
     <com.genius.views.piechartview.PieChart
         android:id="@+id/piechart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="刷新"/>
 </LinearLayout>

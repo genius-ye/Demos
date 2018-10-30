@@ -1,5 +1,8 @@
 package com.genius.views.piechartview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -67,6 +70,16 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
     private SparseArray<double[]> angles = new SparseArray<>();
 
     private GestureDetector mDetector;
+
+    /**
+     * 是否在播放动画
+     */
+    private boolean isAnimation;
+    /**
+     * 其中最大的角度
+     */
+    private float maxAngel;
+    private ValueAnimator mValueAnimator;
 
     public PieChart(Context context) {
         this(context, null);
@@ -168,52 +181,54 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
             ang[1] = ang[0] + mAngles.get(i);
             angles.put(i, ang);
             sweepedAngle += mAngles.get(i);
-
-            String percentText = mPercents.get(i) + "%";
             //画分割线
             canvas.drawArc(mPieRect, sweepedAngle, 1, true, mBlankPaint);
             sweepedAngle += 1;
-            float x = getXCoordinate(mAngles.get(i), sweepedAngle);
-            float y = getYCoordinate(mAngles.get(i), sweepedAngle);
-            mPath.reset();
-            mPath.moveTo(x, y);
-            mPath.lineTo((float) (x * 1.2), (float) (y * 1.2));
-            canvas.drawPath(mPath, mLinePaint);
-            mPath.reset();
-            mPath.moveTo((float) (x * 1.2), (float) (y * 1.2));
 
-            //水平线的长度设置为文字长度的1.3倍
-            float horizontalLineLength = (float) (getTextWidth(mTextPaint, percentText) * 1.3);
-            //当线的起点在第三、四象限时，先把path移动到终点位置，然后向起点画线，使后面画文字时，文字方向是正确的
-            if (x < 0) {
-                horizontalLineLength = -horizontalLineLength;
-                mPath.moveTo((float) (x * 1.2) + horizontalLineLength, (float) (y * 1.2));
+            if (!isAnimation) {
+                String percentText = mElements.get(i).getDescription() + " " + mPercents.get(i) + "%";
+                float x = getXCoordinate(mAngles.get(i), sweepedAngle);
+                float y = getYCoordinate(mAngles.get(i), sweepedAngle);
+                mPath.reset();
+                mPath.moveTo(x, y);
                 mPath.lineTo((float) (x * 1.2), (float) (y * 1.2));
-            } else {
-                mPath.lineTo((float) (x * 1.2) + horizontalLineLength, (float) (y * 1.2));
+                canvas.drawPath(mPath, mLinePaint);
+                mPath.reset();
+                mPath.moveTo((float) (x * 1.2), (float) (y * 1.2));
 
+                //水平线的长度设置为文字长度的1.3倍
+                float horizontalLineLength = (float) (getTextWidth(mTextPaint, percentText) * 1);
+                //当线的起点在第三、四象限时，先把path移动到终点位置，然后向起点画线，使后面画文字时，文字方向是正确的
+                if (x < 0) {
+                    horizontalLineLength = -horizontalLineLength;
+                    mPath.moveTo((float) (x * 1.2) + horizontalLineLength, (float) (y * 1.2));
+                    mPath.lineTo((float) (x * 1.2), (float) (y * 1.2));
+                } else {
+                    mPath.lineTo((float) (x * 1.2) + horizontalLineLength, (float) (y * 1.2));
+
+                }
+//                mPath.close();
+                canvas.drawPath(mPath, mLinePaint);
+                //垂直方向的偏移量，画文字时，文字显示在path的下方，为了让文字显示在上方，设置一个文字高度的垂直偏移量
+                float offsetV = -getTextHeight(mTextPaint, percentText);
+                canvas.drawTextOnPath(percentText, mPath, 0, offsetV, mTextPaint);
             }
-            mPath.close();
-            canvas.drawPath(mPath, mLinePaint);
-            //垂直方向的偏移量，画文字时，文字显示在path的下方，为了让文字显示在上方，设置一个文字高度的垂直偏移量
-            float offsetV = -getTextHeight(mTextPaint, percentText);
-            canvas.drawTextOnPath(percentText, mPath, 0, offsetV, mTextPaint);
-
 
         }
 
         //这里开始画中心空白部分以及文字，空白部分半径设置为整个圆半径的0.6倍
-
         canvas.drawCircle(0, 0, mInnerRadius, mBlankPaint);
-        double index = Math.ceil(mText.length() / 2) + 1;
-        if (mText.length() % 2 == 0) {
-            index -= 1;
+        if(!isAnimation){
+            double index = Math.ceil(mText.length() / 2) + 1;
+            if (mText.length() % 2 == 0) {
+                index -= 1;
+            }
+            String longerText = mText.substring(0, (int) index);
+            calculateTextPaint(longerText);
+            mTextPaint.setTextAlign(Paint.Align.CENTER);
+            canvas.drawText(longerText, 0, 0, mTextPaint);
+            canvas.drawText(mText.substring((int) (index)), 0, getTextHeight(mTextPaint, mText) + 6, mTextPaint);
         }
-        String longerText = mText.substring(0, (int) index);
-        calculateTextPaint(longerText);
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText(longerText, 0, 0, mTextPaint);
-        canvas.drawText(mText.substring((int) (index)), 0, getTextHeight(mTextPaint, mText) + 6, mTextPaint);
         canvas.restore();
         if (mShowLegend) {
             drawLegend(canvas);
@@ -226,7 +241,44 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
     public void setData(List<IPieElement> elements) {
         mElements = elements;
         setValuesAndColors();
-        invalidate();
+        startAnimation();
+//        invalidate();
+    }
+
+    private void startAnimation() {
+        final List<Float> tempAngels = new ArrayList<>();
+        tempAngels.addAll(mAngles);
+
+        if (mValueAnimator != null) {
+            mValueAnimator.cancel();
+        }
+
+        mValueAnimator = ValueAnimator.ofFloat(0f, maxAngel);
+        mValueAnimator.setDuration(2 * 1000);
+        mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(final ValueAnimator animation) {
+                float animatedValue = (float) animation.getAnimatedValue();
+                for (int i = 0; i < tempAngels.size(); i++) {
+                    if (tempAngels.get(i).floatValue() > animatedValue) {
+                        mAngles.set(i, animatedValue);
+                    } else {
+                        mAngles.set(i, tempAngels.get(i).floatValue());
+                    }
+                }
+                invalidate();
+            }
+        });
+        mValueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(final Animator animation) {
+                super.onAnimationEnd(animation);
+                isAnimation = false;
+                invalidate();
+            }
+        });
+        mValueAnimator.start();
+        isAnimation = true;
     }
 
     /**
@@ -242,6 +294,9 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
      * 计算角度值和各个值的占比
      */
     private void setValuesAndColors() {
+
+        clearData();
+
         float sum = 0;
         if (mElements != null && mElements.size() > 0) {
             for (IPieElement ele : mElements) {
@@ -256,12 +311,25 @@ public class PieChart extends View implements GestureDetector.OnGestureListener 
                 BigDecimal res = bigDecimal.divide(sumBigDecimal, 5, BigDecimal.ROUND_HALF_UP);
                 //计算角度
                 BigDecimal angle = res.multiply(totleAngel);
+                if (angle.floatValue() > maxAngel) {
+                    maxAngel = angle.floatValue();
+                }
                 mAngles.add(angle.floatValue());
                 //计算百分比保留两位小数并保存
                 mPercents.add(bigDecimal.multiply(new BigDecimal(100)).divide(sumBigDecimal, 2, BigDecimal.ROUND_HALF_UP).toPlainString());
             }
         }
     }
+
+    /**
+     * 清空原数据
+     */
+    private void clearData() {
+        mColors.clear();
+        mAngles.clear();
+        mPercents.clear();
+    }
+
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
