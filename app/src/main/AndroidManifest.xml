@@ -9,14 +9,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
-        android:name="com.genius.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.genius.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -38,20 +38,22 @@
 
         <!-- dingding -->
         <activity
-            android:name="com.genius.ddshare.DDShareActivity"
+            android:name=".ddshare.DDShareActivity"
             android:exported="true"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
-        <activity android:name="com.genius.views.drawfontview.DrawFrontActivity">
+        <activity android:name=".views.drawfontview.DrawFrontActivity">
         </activity>
-        <activity android:name="com.genius.views.horizontalcenterrecyclerview.RecyclerviewActivity">
+        <activity android:name=".views.horizontalcenterrecyclerview.RecyclerviewActivity">
         </activity>
-        <activity android:name="com.genius.managers.mediaplaymanager.PlayerActivity">
+        <activity android:name=".managers.mediaplaymanager.PlayerActivity">
         </activity>
-        <activity android:name="com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity">
+        <activity android:name=".views.expandrecyclerview.ExpandRecyclerviewActivity">
         </activity>
-        <activity android:name="com.genius.views.piechartview.PieChartActivity">
+        <activity android:name=".views.piechartview.PieChartActivity">
+        </activity>
+        <activity android:name=".views.scrollnumberview.AutoScrollViewActivity">
         </activity>
     </application>
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#ffffff"
+    tools:context=".views.scrollnumberview.AutoScrollViewActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.genius.views.scrollnumberview.AutoScrollNumView
+            android:id="@+id/autoscrolltextview1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:autoscrollnumviewTextSize="20sp"
+            app:autoscrollnumviewTextColor="#FFCCCC"
+            />
+
+        <com.genius.views.scrollnumberview.AutoScrollNumView
+            android:id="@+id/autoscrolltextview2"
+            android:layout_width="50dp"
+            app:autoscrollnumviewTextSize="24sp"
+            app:autoscrollnumviewTextColor="#CC9966"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+
+        <com.genius.views.scrollnumberview.AutoScrollNumView
+            android:id="@+id/autoscrolltextview3"
+            android:layout_width="60dp"
+            app:autoscrollnumviewTextSize="28sp"
+            app:autoscrollnumviewTextColor="#CCCCCC"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="滚动"/>
+
+    <LinearLayout
+        android:id="@+id/linear_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+</LinearLayout>
