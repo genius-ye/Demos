@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.genius.managers.mediaplaymanager.PlayerActivity;
+import com.genius.onclickagent.DemoActivity;
 import com.genius.views.drawfontview.DrawFrontActivity;
 import com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity;
 import com.genius.views.horizontalcenterrecyclerview.RecyclerviewActivity;
@@ -124,6 +125,19 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick() {
                     Intent intent = new Intent(mContext, AutoScrollViewActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+
+        {
+            Bean bean = new Bean();
+            bean.setTitle("代理点击事件");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, DemoActivity.class);
                     startActivity(intent);
                 }
             });
