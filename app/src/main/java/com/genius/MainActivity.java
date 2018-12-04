@@ -11,11 +11,13 @@ import android.widget.Toast;
 
 import com.genius.managers.mediaplaymanager.PlayerActivity;
 import com.genius.onclickagent.DemoActivity;
+import com.genius.views.coordinatelayoutdemo.CoordinateLayoutDemoActivity;
 import com.genius.views.drawfontview.DrawFrontActivity;
 import com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity;
 import com.genius.views.horizontalcenterrecyclerview.RecyclerviewActivity;
 import com.genius.views.piechartview.PieChartActivity;
 import com.genius.views.scrollnumberview.AutoScrollViewActivity;
+import com.genius.views.shadowdrawable.ShadowDrawableActivity;
 import com.google.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
@@ -138,6 +140,32 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick() {
                     Intent intent = new Intent(mContext, DemoActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+
+        {
+            Bean bean = new Bean();
+            bean.setTitle("CoordinateLayout使用");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, CoordinateLayoutDemoActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+
+        {
+            Bean bean = new Bean();
+            bean.setTitle("shadowdrawable阴影使用");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, ShadowDrawableActivity.class);
                     startActivity(intent);
                 }
             });
