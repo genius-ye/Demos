@@ -16,6 +16,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 
+/**
+ * creat by geniusye 2018-12-4
+ *
+ * View添加阴影效果
+ */
 public class ShadowDrawable extends Drawable {
 
 	private Paint mShadowPaint;

@@ -8,6 +8,16 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <com.genius.views.TextViews.SDAdaptiveTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:text="汉字fkjagjkjkjgagkajgkjkgjakgjkgjakjgkajgkjkagjgjkajgkgjkajg"
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
