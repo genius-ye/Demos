@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.genius.managers.mediaplaymanager.PlayerActivity;
 import com.genius.onclickagent.DemoActivity;
 import com.genius.views.coordinatelayoutdemo.CoordinateLayoutDemoActivity;
+import com.genius.views.dragrecyclerview.DragRecyclerviewActivity;
 import com.genius.views.drawfontview.DrawFrontActivity;
 import com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity;
 import com.genius.views.horizontalcenterrecyclerview.RecyclerviewActivity;
@@ -166,6 +167,18 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick() {
                     Intent intent = new Intent(mContext, ShadowDrawableActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+        {
+            Bean bean = new Bean();
+            bean.setTitle("DragRecyclerviewActivity实现列表侧滑菜单");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, DragRecyclerviewActivity.class);
                     startActivity(intent);
                 }
             });
