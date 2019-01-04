@@ -15,6 +15,7 @@ import com.genius.views.coordinatelayoutdemo.CoordinateLayoutDemoActivity;
 import com.genius.views.dragrecyclerview.DragRecyclerviewActivity;
 import com.genius.views.drawfontview.DrawFrontActivity;
 import com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity;
+import com.genius.views.gridrecyclerview.GridRecyclerviewActivity;
 import com.genius.views.horizontalcenterrecyclerview.RecyclerviewActivity;
 import com.genius.views.piechartview.PieChartActivity;
 import com.genius.views.scrollnumberview.AutoScrollViewActivity;
@@ -179,6 +180,18 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick() {
                     Intent intent = new Intent(mContext, DragRecyclerviewActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+        {
+            Bean bean = new Bean();
+            bean.setTitle("gridRecyclerview实现选择图片");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, GridRecyclerviewActivity.class);
                     startActivity(intent);
                 }
             });
