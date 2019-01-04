@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.genius.R;
 
@@ -31,13 +32,17 @@ class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.Viewh
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_recyclerview_grid,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_recyclerview_grid, parent, false);
         return new Viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final Viewholder holder, final int position) {
-
+        if (position == datas.size() - 1) {
+            holder.img.setImageResource(R.mipmap.add);
+        } else {
+            holder.img.setImageResource(R.mipmap.ic_launcher);
+        }
     }
 
     @Override
@@ -51,10 +56,12 @@ class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.Viewh
 
     class Viewholder extends RecyclerView.ViewHolder {
 
+        ImageView img;
+
         public Viewholder(final View itemView) {
             super(itemView);
-            if(mCallback!=null)
-            {
+            img = itemView.findViewById(R.id.img);
+            if (mCallback != null) {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
@@ -65,8 +72,7 @@ class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapter.Viewh
         }
     }
 
-    interface Callback
-    {
+    interface Callback {
         void onItemClick(int position);
     }
 }
