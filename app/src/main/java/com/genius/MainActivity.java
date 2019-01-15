@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.genius.hotfix.HotfixActivity;
 import com.genius.managers.mediaplaymanager.PlayerActivity;
 import com.genius.onclickagent.DemoActivity;
+import com.genius.qiyukfdemo.QiyukfDemoActivity;
 import com.genius.views.coordinatelayoutdemo.CoordinateLayoutDemoActivity;
 import com.genius.views.dragrecyclerview.DragRecyclerviewActivity;
 import com.genius.views.drawfontview.DrawFrontActivity;
@@ -192,6 +194,30 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick() {
                     Intent intent = new Intent(mContext, GridRecyclerviewActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+        {
+            Bean bean = new Bean();
+            bean.setTitle("网易七鱼客服demo（第三方sdk二次封装）");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, QiyukfDemoActivity.class);
+                    startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+        {
+            Bean bean = new Bean();
+            bean.setTitle("热修复");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    Intent intent = new Intent(mContext, HotfixActivity.class);
                     startActivity(intent);
                 }
             });
