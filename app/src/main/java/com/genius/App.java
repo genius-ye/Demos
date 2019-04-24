@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.genius.hotfix.HotFix;
+import com.genius.imageloader.GlideLoader;
+import com.genius.imageloader.ImageLoader;
 import com.genius.qiyukfdemo.OnlineService;
 
 /**

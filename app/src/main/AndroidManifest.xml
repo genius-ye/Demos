@@ -16,17 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".imageloader.ImageLoaderActivity">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-
-        <!-- wechat callback -->
-
-
+        </activity> <!-- wechat callback -->
         <!-- <activity -->
         <!-- android:name=".wxapi.WXEntryActivity" -->
         <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
@@ -34,8 +32,6 @@
         <!-- android:launchMode="singleInstance" -->
         <!-- android:screenOrientation="portrait" -->
         <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
-
-
         <!-- dingding -->
         <activity
             android:name=".ddshare.DDShareActivity"
@@ -68,6 +64,8 @@
         <activity android:name=".qiyukfdemo.QiyukfDemoActivity">
         </activity>
         <activity android:name=".hotfix.HotfixActivity">
+        </activity>
+        <activity android:name=".views.customtablayout.CustomTablayoutActivity">
         </activity>
     </application>
 

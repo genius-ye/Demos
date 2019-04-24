@@ -1,5 +1,6 @@
 package com.genius;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +11,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.genius.hotfix.HotfixActivity;
+import com.genius.imageloader.ImageLoaderActivity;
 import com.genius.managers.mediaplaymanager.PlayerActivity;
 import com.genius.onclickagent.DemoActivity;
 import com.genius.qiyukfdemo.QiyukfDemoActivity;
 import com.genius.views.coordinatelayoutdemo.CoordinateLayoutDemoActivity;
+import com.genius.views.customtablayout.CustomTablayoutActivity;
 import com.genius.views.dragrecyclerview.DragRecyclerviewActivity;
 import com.genius.views.drawfontview.DrawFrontActivity;
 import com.genius.views.expandrecyclerview.ExpandRecyclerviewActivity;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String tag = MainActivity.class.getSimpleName();
 
     private Context mContext;
+    private Activity mActivity;
     private RecyclerView mRecyclerView;
     private List<Bean> mBeans;
     private RecyclerviewAdapter recyclerviewAdapter;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
+        mActivity = this;
 
         mRecyclerView = findViewById(R.id.recyclerview);
         mBeans = new ArrayList<>();
@@ -219,6 +224,28 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick() {
                     Intent intent = new Intent(mContext, HotfixActivity.class);
                     startActivity(intent);
+                }
+            });
+            mBeans.add(bean);
+        }
+        {
+            Bean bean = new Bean();
+            bean.setTitle("自定义tablayout");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    CustomTablayoutActivity.start(mActivity);
+                }
+            });
+            mBeans.add(bean);
+        }
+        {
+            Bean bean = new Bean();
+            bean.setTitle("第三方图片框架封装ImageLoader");
+            bean.setOnClick(new Bean.OnClick() {
+                @Override
+                public void onClick() {
+                    ImageLoaderActivity.start(mActivity);
                 }
             });
             mBeans.add(bean);
